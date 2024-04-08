@@ -1,0 +1,8 @@
+All raster and vector images within are © 2021 by Pareto Software LLC under the SimpleMaps.com brand.
+The raster images within are © OpenStreetMap.
+
+All files are released under the Open Data Commons Open Database License (v1.0):
+https://opendatacommons.org/licenses/odbl/
+
+Attribution of use is required.
+
