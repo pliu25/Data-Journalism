@@ -5,24 +5,41 @@ f1 = open("data/NYC_DogLicensing_modified.csv", "r")
 lines = f1.readlines()
 #print(lines)
 
-dictionary ={}
+zipcode_dict ={}
 zipcodes = []
-# Create the dictionary here
+# Create the zipcode_dict here
 for line in lines:
     line_list = list(line.split(","))
     if line_list[2][0].isnumeric() == False:
         line_list.remove(line_list[2])
     zipcodes.append(line_list[2].strip())
-print(zipcodes)
+#print(zipcodes)
 
+#zipcode dictionary: # of breeds in zipcode 
 for key in zipcodes:
-    if key not in dictionary:
-        dictionary[key] = zipcodes.count(key)
-print(dictionary)
+    if key not in zipcode_dict:
+        zipcode_dict[key] = zipcodes.count(key)
+print(zipcode_dict)
+
+breeds_set = set()
+for line in lines: 
+    line_list = list(line.split(","))
+    breeds_set.add(line_list[1])
+print(breeds_set)
+
+zipcodes_set = set(zipcodes)
+print(zipcodes_set)
+
+'''
+breeds_dictionary = {}
+for zipcode in zipcodes_set:
+    if zipcode not in breeds_dictionary:
+'''
+
 f1.close()
 
 #Save the json object to a file
 f2 = open("data/NYC_DogLicensing_modified.json", "w")
-json.dump(dictionary, f2, indent = 4)
+json.dump(zipcode_dict, f2, indent = 4)
 
 f2.close()
