@@ -9,10 +9,16 @@ dictionary ={}
 zipcodes = []
 # Create the dictionary here
 for line in lines:
-    line_list = line.split(",")
-    if line_list[2] != num
-    zipcodes.append(line.split(",")[2])
+    line_list = list(line.split(","))
+    if line_list[2][0].isnumeric() == False:
+        line_list.remove(line_list[2])
+    zipcodes.append(line_list[2].strip())
 print(zipcodes)
+
+for key in zipcodes:
+    if key not in dictionary:
+        dictionary[key] = zipcodes.count(key)
+print(dictionary)
 f1.close()
 
 #Save the json object to a file
