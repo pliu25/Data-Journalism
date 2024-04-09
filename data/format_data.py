@@ -39,7 +39,7 @@ for zipcode in zipcodes_set:
         breeds_dictionary[zipcode] = {}
         for breed in breeds_set:
             if breed not in breeds_dictionary[zipcode]:
-                breeds_dictionary[zipcode][breed] = breeds_list.count(breed)
+                breeds_dictionary[zipcode][breed] = {}
                 
 print(breeds_dictionary)
 
