@@ -14,7 +14,7 @@ for line in lines:
     if line_list[2][0].isnumeric() == False:
         line_list.remove(line_list[2])
     zipcodes.append(line_list[2].strip())
-    zipcode_breed_dict[line_list[2].strip()] = line_list[1]
+    zipcode_breed_dict[line_list[2].strip()] = []
 #print(zipcodes)
 print(zipcode_breed_dict)
 
