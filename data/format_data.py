@@ -12,6 +12,9 @@ for line in lines:
     line_list = list(line.split(","))
     if line_list[2][0].isnumeric() == False:
         line_list.remove(line_list[2])
+        if line_list[2][0].isnumeric() == False:
+            line_list.remove(line_list[2])
+
     zipcodes.append(line_list[2].strip())
 #print(zipcodes)
 #print(zipcode_breed_dict)
