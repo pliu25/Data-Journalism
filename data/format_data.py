@@ -22,17 +22,25 @@ for key in zipcodes:
 print(zipcode_dict)
 
 breeds_set = set()
-breeds_list = []
 for line in lines: 
     line_list = list(line.split(","))
     breeds_set.add(line_list[1])
-    breeds_list.append(line_list[1])
 #print(breeds_set)
 
 zipcodes_set = set(zipcodes)
 #print(zipcodes_set)
 
+zipcode_breed_dict = {}
 
+for line in lines:
+    line_list = list(line.split(","))
+    for zipcode in zipcodes:
+        zipcode_breed_dict[zipcode] = line_list[1]
+        print(line_list[1])
+
+#print(zipcode_breed_dict)
+
+'''
 breeds_dictionary = {}
 for zipcode in zipcodes_set:
     if zipcode not in breeds_dictionary:
@@ -42,12 +50,12 @@ for zipcode in zipcodes_set:
                 breeds_dictionary[zipcode][breed] = {}
                 
 print(breeds_dictionary)
-
+'''
 
 f1.close()
 
 #Save the json object to a file
 f2 = open("data/NYC_DogLicensing_modified.json", "w")
-json.dump(zipcode_dict, breeds_dictionary, f2, indent = 4)
+json.dump(zipcode_dict, f2, indent = 4)
 
 f2.close()
