@@ -7,19 +7,22 @@ lines = f1.readlines()
 
 zipcode_dict ={}
 zipcodes = []
+zipcode_breed_dict = {}
 # Create the zipcode_dict here
 for line in lines:
     line_list = list(line.split(","))
     if line_list[2][0].isnumeric() == False:
         line_list.remove(line_list[2])
     zipcodes.append(line_list[2].strip())
+    zipcode_breed_dict[line_list[2].strip()] = line_list[1]
 #print(zipcodes)
+print(zipcode_breed_dict)
 
 #zipcode dictionary: # of breeds in zipcode 
 for key in zipcodes:
     if key not in zipcode_dict:
         zipcode_dict[key] = zipcodes.count(key)
-print(zipcode_dict)
+#print(zipcode_dict)
 
 breeds_set = set()
 for line in lines: 
@@ -30,13 +33,8 @@ for line in lines:
 zipcodes_set = set(zipcodes)
 #print(zipcodes_set)
 
-zipcode_breed_dict = {}
 
-for line in lines:
-    line_list = list(line.split(","))
-    for zipcode in zipcodes:
-        zipcode_breed_dict[zipcode] = line_list[1]
-        print(line_list[1])
+
 
 #print(zipcode_breed_dict)
 
