@@ -32,7 +32,6 @@ zipcodes_set = set(zipcodes)
 #print(zipcodes_set)
 
 zipcodes_breed_draft = defaultdict(list)
-zipcodes_breed_draft[10].append("yay")
 print(zipcodes_breed_draft)
 
 for line in lines:
@@ -40,16 +39,14 @@ for line in lines:
     line_list = list(line.split(","))
     if line_list[2][0].isnumeric() == False:
         line_list.remove(line_list[2])
-    breed_list = list(line_list[1])
-    revised_breed_list = []
+    breed_list = list(line_list[1].split('/', 1)[0])
     for char in breed_list:
-        fix_char = list("".join(char.split('/', 1)[0]))
-        revised_breed_list.append(fix_char)
-        if (fix_char.isspace() == False) and (fix_char.isalpha() == False):
-            revised_breed_list.remove(fix_char)
-    zipcodes_breed_draft[line_list[2].strip()].append("".join(revised_breed_list))
+        if (char.isspace() == False) and (char.isalpha() == False):
+            breed_list.remove(char)
+    zipcodes_breed_draft[line_list[2].strip()].append("".join(breed_list))
     #zipcodes_breed_draft.append(zipcodes_breed_draft_dict)
     #zipcodes_breed_draft_dict = {}
+
 
 print(zipcodes_breed_draft)
 
