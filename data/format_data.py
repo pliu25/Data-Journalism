@@ -1,7 +1,7 @@
 import json
 from collections import defaultdict
 
-f1 = open("data/NYC_DogLicensing_modified.csv", "r")
+f1 = open("data/data.csv", "r")
 lines = f1.readlines()
 #print(lines)
 
@@ -67,7 +67,7 @@ print(breeds_dictionary)
 f1.close()
 
 #Save the json object to a file
-f2 = open("data/NYC_DogLicensing_modified.json", "w")
+f2 = open("data/data.json", "w")
 json.dump(zipcode_dict, f2, indent = 4)
 json.dump(zipcodes_breed_draft, f2, indent = 4)
 
