@@ -50,20 +50,6 @@ for line in lines:
 
 print(zipcodes_breed_draft)
 
-
-
-'''
-breeds_dictionary = {}
-for zipcode in zipcodes_set:
-    if zipcode not in breeds_dictionary:
-        breeds_dictionary[zipcode] = {}
-        for breed in breeds_set:
-            if breed not in breeds_dictionary[zipcode]:
-                breeds_dictionary[zipcode][breed] = {}
-                
-print(breeds_dictionary)
-'''
-
 f1.close()
 
 #Save the json object to a file
