@@ -16,14 +16,15 @@ for line in lines:
             line_list.remove(line_list[2])
 
     zipcodes.append(line_list[2].strip())
-#print(zipcodes)
+print(len(zipcodes))
 #print(zipcode_breed_dict)
 
 #zipcode dictionary: # of breeds in zipcode 
-for key in zipcodes:
-    if key not in zipcode_dict:
-        zipcode_dict[key] = zipcodes.count(key)
-#print(zipcode_dict)
+for zip in zipcodes:
+    if zip not in zipcode_dict:
+        zipcode_dict[zip] = zipcodes.count(zip)
+print(len(zipcode_dict.keys()))
+print(sum(zipcode_dict.values()))
 
 breeds_set = set()
 for line in lines: 
@@ -35,7 +36,7 @@ zipcodes_set = set(zipcodes)
 #print(zipcodes_set)
 
 zipcodes_breed_draft = defaultdict(list)
-print(zipcodes_breed_draft)
+#print(zipcodes_breed_draft)
 
 for line in lines:
     zipcodes_breed_draft_dict = {}
@@ -51,7 +52,7 @@ for line in lines:
     #zipcodes_breed_draft_dict = {}
 
 
-print(zipcodes_breed_draft)
+#print(zipcodes_breed_draft)
 
 f1.close()
 
