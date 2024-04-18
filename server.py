@@ -9,5 +9,12 @@ app = Flask(__name__, static_url_path='', static_folder='static')
 def about():
     return render_template('about.html')
 
+@app.route('/macro')
+def macro():
+    return render_template('macro.html')
+
+@app.route('/micro')
+def micro():
+    return render_template('micro.html')
 
 app.run(debug=True)
