@@ -11,7 +11,7 @@ def about():
     data = json.load(f)
     f.close()
 
-    return render_template('about.html')
+    return render_template('about.html', zipcodes = sorted(data["macro"].keys()))
 
 @app.route('/macro')
 def macro():

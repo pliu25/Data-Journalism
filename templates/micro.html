@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Micro Page: Comparing Breed Populations in {{zipcode}}</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400..700&family=Mate:ital@0;1&display=swap" rel="stylesheet">
+    {% include 'integrateBootstrap.html' %}
+</head>
+    
+<body>
+{% include 'navbar.html' %}
+
+<h1>Dog Populations Per Breed in {{Zipcode}}</h1>
+
+<div id="macro_graph">
+    
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+{% include 'footer.html' %}
+</html>

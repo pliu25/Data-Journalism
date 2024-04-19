@@ -21,13 +21,13 @@
       zipcode detailed. My micro pages will be bar charts per zipcode tracking the number of dogs per dog breed. I chose this topic because I thought it was the most interesting one and 
       I love dogs! I also thought it would be fun to design my page with photos of adorable dogs! 
     </p>
-    <h2>Link to All Data Sources</h2>
+    <h3>Link to All Data Sources</h3>
     <ul>
         <li><a href="https://data.cityofnewyork.us/Health/NYC-Dog-Licensing-Dataset/nu7n-tubp/about_data">NYC Dog Licensing Data Source (NYC Open Data) </a></li>
         <li><a href="https://simplemaps.com/city/new-york/zips"> NYC SVG Map by Zipcode Source (Simple Maps) </a></li>
         <li><a href="NYCZipCodeMapSVG/new-york_combined.svg"> NYC SVG Map by Zipcode Graphic </a></li>
       </ul>
-    <h3 id="DataCleansingPipeline"> Data Cleansing Pipeline</h3>
+    <h2 id="DataCleansingPipeline"> Data Cleansing Pipeline</h2>
     <p> The original dataset had a dog's name, sex, birth year, breed, license issue date, license expired date, and data extraction year. I pared down the dataset so it was easier to analyze what I wanted to&mdash;the number of dogs in each zipcode and the number of dogs per breed in each zipcode. 
         By removing columns in Excel, I pared down the dataset so it initially only had the dog's name, breed, and data extraction year. I thought the data extraction year was a good representation of the amount of dogs in NYC in a certain year because that means the dog license was active in that certain year 
         and it was also easier to use than the specific license issued and expired date. Then, since I'm only looking at NYC zipcodes, I removed all non-NYC zipcodes by first googling the range of NYC zipcodes (10001 - 11697) and then removing all data entries with zipcodes 
@@ -38,17 +38,38 @@
     <ul>
         <li><a href="data/format_data.py"> format_data.py: what I did to organize my modified data into dictionaries I could later work with to craft a more understandable, visual interpretation of my data, my macro and micro pages</a></li>
         <li><a href="data/data.json"> data.json: modified data organized into dictionaries by format_data.py, so it's easier to translate data to my planned maps and bar charts</a></li>
-      </ul>
+    </ul>
+    <h2>Important Vocabulary and Prefaces</h2>
+    <ul>
+      <li> Every dog in New York City is legally required to have a dog license. My original data from NYC Open Data tracked these NYC dog licenses. 
+        Because each dog in NYC is assigned a dog license, I thought it was a good representation of dog populations in NYC. In my graphs, I assume the number of dog licenses to be the number of dogs. /li>
+      <li>Quintiles means splitting data so that each quintile represnents 20% of the total data. 
+        The first quintile represents the lowest fifth of the data (1% to 20%), while the fifth quintile represents the highest fifth of the data (81% - 100%). 
+        Because the number of dogs in each zipcode varies so greatly because of the vast difference in the size between certain zipcodes, I decided to use quintiles to best represent my macro data. 
+        I didn't want to arbitraily set random dog population ranges to different colors on my legend, I wanted to assign data points to different colors detailing differences in dog population in a logical way that viewers could understand. 
+        </li>
+    </ul>
+    <h2>Prototypes</h2>
     <div class="container">
       <div class="row">
         <div class="col">
           <figure> 
           <img src="{{url_for('static', filename='/photos/macro.jpeg')}}" class="img-fluid" alt="Macro Prototype">
+          <figcaption> Macro Page: I prioritized making my map chart understandable at first glance. I have a simple headline that gets to the point quickly; it
+            lets the viewer know that I'm comparing NYC zipcodes' populations of dogs in 2023 by relying on dog license data. I also made it so that each dog population quartile is represented by a shade of the same color so 
+            viewers can easily between quartiles and compare zipcode dog populations. I used shades of the same color instead of different colors because different colors can be confusing and messy and I wanted to simplify the message as much as possible for my viewer. The legend on the right details these quartiles (please ignore the left legend). After getting my feedback, I decided that in my final design, I'll add concrete numbers to each quartile 
+            so the viewer can more easily understand the range of populations. Also, I also will remove the number of dogs tag on each zipcode on the map because my feedback noted that this cluttered the page. Instead, I'll make the population number of that zipcode appear 
+            when a user hovers over the zipcode on the map. Listening to my feedback, I also will add in qualitative and quantitative analysis to my chart to more clearly explain the data and compare zipcode dog populations.
+          </figcaption>
+
           </figure>
         </div>  
         <div class="col">
           <figure>
             <img src="{{url_for('static', filename='/photos/micro.jpeg')}}" class="img-fluid" alt="Micro Prototype">
+            <figcaption> Micro Page: For my micro page, I used a simple bar chart to compare populations of different dog breeds in each zipcode, which I make clear in my simple heading. I used a bar chart because I thought it would be most effective for comparing unchanging populations in a single year, 
+              especially with so many different breeds. I also included faint horizontal lines per y-axis (representing population) tick on the chart so that the reader can easily distinguish between populations. Per my feedback, I'll add in qualitative analysis to explain my data further!
+            </figcaption>
           </figure>
         </div>
       </div>
