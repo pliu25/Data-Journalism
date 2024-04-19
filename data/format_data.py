@@ -6,6 +6,7 @@ lines = f1.readlines()
 #print(lines)
 
 zipcode_dict ={}
+zipcode_dict["macro"] = {}
 zipcodes = []
 # Create the zipcode_dict here
 for line in lines:
@@ -21,10 +22,8 @@ print(len(zipcodes))
 
 #zipcode dictionary: # of breeds in zipcode 
 for zip in zipcodes:
-    if zip not in zipcode_dict:
-        zipcode_dict[zip] = zipcodes.count(zip)
-print(len(zipcode_dict.keys()))
-print(sum(zipcode_dict.values()))
+    if zip not in zipcode_dict["macro"]:
+        zipcode_dict["macro"][zip] = zipcodes.count(zip)
 
 breeds_set = set()
 for line in lines: 
@@ -39,7 +38,6 @@ zipcodes_breed_draft = defaultdict(list)
 #print(zipcodes_breed_draft)
 
 for line in lines:
-    zipcodes_breed_draft_dict = {}
     line_list = list(line.split(","))
     if line_list[2][0].isnumeric() == False:
         line_list.remove(line_list[2])
@@ -51,6 +49,15 @@ for line in lines:
     #zipcodes_breed_draft.append(zipcodes_breed_draft_dict)
     #zipcodes_breed_draft_dict = {}
 
+zipcode_dict["micro"] = {}
+for zip in zipcodes_breed_draft.keys():
+    zipcode_dict["micro"][zip] = {}
+    for breed in zipcodes_breed_draft[zip]:
+        if breed not in zipcode_dict["micro"][zip]:
+            zipcode_dict["micro"][zip][breed] = zipcodes_breed_draft[zip].count(breed)
+        
+
+
 
 #print(zipcodes_breed_draft)
 
@@ -59,6 +66,5 @@ f1.close()
 #Save the json object to a file
 f2 = open("data/data.json", "w")
 json.dump(zipcode_dict, f2, indent = 4)
-json.dump(zipcodes_breed_draft, f2, indent = 4)
 
 f2.close()
