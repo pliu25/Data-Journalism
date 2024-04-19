@@ -12,9 +12,9 @@ def about():
     f.close()
 
     requested_zip = request.args.get("zip")
-    zipcodes = sorted(list(data["macro"].keys()))
+    all_zips = sorted(list(data["macro"].keys()))
 
-    return render_template('about.html', requested_zip = requested_zip, zipcodes = zipcodes)
+    return render_template('about.html', requested_zip = requested_zip, all_zips = all_zips)
 
 @app.route('/macro')
 def macro():
@@ -23,9 +23,9 @@ def macro():
     f.close()
 
     requested_zip = request.args.get("zip")
-    zipcodes = sorted(list(data["macro"].keys()))
+    all_zips = sorted(list(data["macro"].keys()))
 
-    return render_template('macro.html', requested_zip = requested_zip, zipcodes = zipcodes)
+    return render_template('macro.html', requested_zip = requested_zip, all_zips = all_zips)
 
 @app.route('/micro')
 def micro():
@@ -34,9 +34,9 @@ def micro():
     f.close()
 
     requested_zip = request.args.get("zip")
-    zipcodes = sorted(list(data["macro"].keys()))
-    print(zipcodes)
+    all_zips = sorted(list(data["macro"].keys()))
+    print(all_zips)
 
-    return render_template('micro.html', requested_zip = requested_zip, zipcodes = zipcodes)
+    return render_template('micro.html', requested_zip = requested_zip, all_zips = all_zips)
 
 app.run(debug=True)
