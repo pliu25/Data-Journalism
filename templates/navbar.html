@@ -1,31 +1,31 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="mx-auto" style="width: 98%;">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">About <span class="sr-only">(current page)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/macro">Macro Page</a>
-        </li>
-        <li class="nav-item dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown button
-          </button>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/"> About Page</a>
-            <a class="dropdown-item" href="/macro"> Comparing Dog Populations in New York City Zipcodes</a>
-            {% for zip in zipcodes %}
-              <a class="dropdown-item" href="/micro/{{zip}}"> Comparing Dog Breed Populations in {{zip}}</a>
-            {% endfor %}
-          </div>
-        </li>
-      </ul>
+
+<div class="w3-container" style="width: 98%;">
+  <div class="w3-bar w3-light-grey">
+    <a href="/" class="w3-bar-item w3-button">About</a>
+    <a href="/macro" class="w3-bar-item w3-button">Macro Page</a>
+    <div class="w3-dropdown-click">
+      <button class="w3-button" onclick="myFunction()">
+        Micro Pages <i class="fa fa-caret-down"></i>
+      </button>
+      <div id="demo" class="w3-dropdown-content w3-bar-block w3-card">
+        {% for zip in zipcodes %}
+        <a href="/micro/{{zip}}" class="w3-bar-item w3-button" > Comparing Dog Breed Populations in {{zip}}</a>
+        {% endfor %}
+      </div>
     </div>
   </div>
-  </nav>
+
+<script>
+  function myFunction() {
+    var x = document.getElementById("demo");
+    if (x.className.indexOf("w3-show") == -1) {
+      x.className += " w3-show";
+    } else { 
+      x.className = x.className.replace(" w3-show", "");
+    }
+  }
+</script>
+
+
+ 
+  
