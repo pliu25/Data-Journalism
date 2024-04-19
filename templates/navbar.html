@@ -8,8 +8,8 @@
         Micro Pages <i class="fa fa-caret-down"></i>
       </button>
       <div id="demo" class="w3-dropdown-content w3-bar-block w3-card">
-        {% for zip in zipcodes %}
-        <a href="/micro/{{zip}}" class="w3-bar-item w3-button" > Comparing Dog Breed Populations in {{zip}}</a>
+        {% for zip in all_zips %}
+        <a href="/micro?{{zip}}" class="w3-bar-item w3-button" > Comparing Dog Breed Populations in {{zip}}</a>
         {% endfor %}
       </div>
     </div>

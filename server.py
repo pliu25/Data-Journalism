@@ -11,7 +11,10 @@ def about():
     data = json.load(f)
     f.close()
 
-    return render_template('about.html', zipcodes = sorted(data["macro"].keys()))
+    requested_zip = request.args.get("zip")
+    zipcodes = sorted(list(data["macro"].keys()))
+
+    return render_template('about.html', requested_zip = requested_zip, zipcodes = zipcodes)
 
 @app.route('/macro')
 def macro():
@@ -19,7 +22,10 @@ def macro():
     data = json.load(f)
     f.close()
 
-    return render_template('macro.html')
+    requested_zip = request.args.get("zip")
+    zipcodes = sorted(list(data["macro"].keys()))
+
+    return render_template('macro.html', requested_zip = requested_zip, zipcodes = zipcodes)
 
 @app.route('/micro')
 def micro():
@@ -27,6 +33,10 @@ def micro():
     data = json.load(f)
     f.close()
 
-    return render_template('micro.html')
+    requested_zip = request.args.get("zip")
+    zipcodes = sorted(list(data["macro"].keys()))
+    print(zipcodes)
+
+    return render_template('micro.html', requested_zip = requested_zip, zipcodes = zipcodes)
 
 app.run(debug=True)
