@@ -3,6 +3,28 @@
     <!-- Footer -->
     <footer class="text-center text-white" style="background-color: #ffffff">
       <style>
+        .dropbtn {
+          background-color: #3498DB;
+          color: white;
+          padding: 16px;
+          font-size: 16px;
+          border: none;
+        }
+
+        .dropup {
+          position: relative;
+          display: inline-block;
+        }
+
+        .dropup-content {
+          display: none;
+          position: absolute;
+          background-color: #f1f1f1;
+          min-width: 160px;
+          bottom: 50px;
+          z-index: 1;
+        }
+
         .dropup-content a {
           color: black;
           padding: 12px 16px;
@@ -16,18 +38,19 @@
           display: block;
         }
 
-        
+        .dropup:hover .dropbtn {
+          background-color: #2980B9;
+        }
+
       </style>
       <div class="w3-bar w3-light-grey" >
         <a href="/" class="w3-bar-item w3-button">About</a>
         <a href="/macro" class="w3-bar-item w3-button">Dog Populations in NYC: Zipcode Map</a>
         <div class="dropup">
-          <button class="dropbtn" onclick="myFunction()" style="position: relative;
-          display: inline-block;">
+          <button class="dropbtn">
             Dropdown Menu: Comparing Dog Breed Populations in... 
           </button>
-          <div id="demo" class="dropup-content" style="display: none;
-          position: absolute;background-color: #f1f1f1; min-width: 160px; bottom: 50px; z-index: 1;">
+          <div class="dropup-content" >
             {% for zip in all_zips %}
             <a href="/micro?{{zip}}"> {{zip}}</a>
             {% endfor %}
