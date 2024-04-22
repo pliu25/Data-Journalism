@@ -33,9 +33,8 @@ def micro():
     data = json.load(f)
     f.close()
 
-    requested_zip = request.args.get("zip")
     all_zips = sorted(list(data["macro"].keys()))
-    print(all_zips)
+    requested_zip = request.args.get("micro")
 
     return render_template('micro.html', requested_zip = requested_zip, all_zips = all_zips)
 

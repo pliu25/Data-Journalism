@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Micro Page: Comparing Breed Populations in {{zipcode}}</title>
+    <title>Micro Page: Comparing Breed Populations in {{requested_zip}}</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,11 +12,11 @@
     
 <body>
 {% include 'navbar.html' %}
+<br>
+<h1>Dog Populations Per Breed in {{requested_zip}}</h1>
 
-<h1>Dog Populations Per Breed in {{Zipcode}}</h1>
-
-<div id="macro_graph">
-    
+<div id="micro_graph">
+    {% include 'bar_graph.svg' %}
   </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
