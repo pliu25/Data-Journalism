@@ -27,15 +27,16 @@ def macro():
 
     return render_template('macro.html', requested_zip = requested_zip, all_zips = all_zips)
 
-@app.route('/micro/zip')
+@app.route('/micro')
 def micro():
     f = open("data/data.json", "r")
     data = json.load(f)
     f.close()
 
     all_zips = sorted(list(data["macro"].keys()))
-    requested_zip = request.args.get("zip")
+    requested_zip = request.args.get("zipcode")
+    zipcode = request.query_string.decode()
 
-    return render_template('micro.html', requested_zip = requested_zip, all_zips = all_zips)
+    return render_template('micro.html', requested_zip = requested_zip, all_zips = all_zips, zipcode = zipcode)
 
-app.run(debug=True)
+app.run(debug=True) 
