@@ -61,7 +61,8 @@ for zip in zipcodes_breed_draft.keys():
 
 #print(zipcodes_breed_draft)
 
-f1.close()
+print(zipcode_dict["macro"].values())
+f1.close(zipcode_dict)
 
 #Save the json object to a file
 f2 = open("data/data.json", "w")
