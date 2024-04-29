@@ -18,9 +18,20 @@
 <h2>By Looking at Dog Licenses</h2>
 
 <script>
-//can't use python var in javascript 
     let zipcode_map = document.getElementById()
-    console.log(zip) 
+    if (zipcode_map < 1) {
+        zipcode_map.style.color = "white";
+    } else if (zipcode_map <= 2) {
+        zipcode_map.style.color = "240, 212, 255";
+    } else if (zipcode_map <= 98) {
+        zipcode_map.style.color = "223, 169, 252";
+    } else if (zipcode_map <= 360) {
+        zipcode_map.style.color = "202, 109, 252";
+    } else if (zipcode_map <= 655) {
+        zipcode_map.style.color = "180, 59, 245";
+    } else if (zipcode_map <= 2380) {
+        zipcode_map.style.color = "129, 4, 196";
+    } 
 
     
 </script>
