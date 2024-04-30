@@ -17,11 +17,19 @@
 <h1>Number of Dogs Per New York City Zipcode</h1>
 <h2>By Looking at Dog Licenses</h2>
 
-<script>
-    let zipcode_map = document.getElementById()
-    console.log(zipcode_map)
-    zipcode_color = {{zipcode_color}}
 
+<script>
+    let data = {{zipcode_color  | tojson}}
+    let zipcodes = Object.keys(data)
+    for (property in data) {
+        let zipcode_map = document.getElementById(property)
+        //zipcode_map.style.color = data.get(zipcode_map)
+        console.log(zipcode_map)
+    }
+    
+
+    
+    //use jinja to impplement + javascript
 </script>
 
 <div id="macro_graph">

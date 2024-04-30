@@ -55,6 +55,7 @@ def micro():
     requested_zip = request.args.get("zipcode")
     zipcode = request.query_string.decode()
 
+
     return render_template('micro.html', requested_zip = requested_zip, all_zips = all_zips, zipcode = zipcode)
 
 app.run(debug=True) 
