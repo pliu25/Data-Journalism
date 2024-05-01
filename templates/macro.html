@@ -17,24 +17,31 @@
 <h1>Number of Dogs Per New York City Zipcode</h1>
 <h2>By Looking at Dog Licenses</h2>
 
+<div id="macro_graph">
+    {% include 'NYCZipCodeMapSVG/new-york_combined.svg' %}
+  </div>
 
 <script>
     let data = {{zipcode_color  | tojson}}
     let zipcodes = Object.keys(data)
-    for (property in data) {
-        let zipcode_map = document.getElementById(property)
-        //zipcode_map.style.color = data.get(zipcode_map)
-        console.log(zipcode_map)
+    let colors = Object.values(data)
+
+    function getValueByKey(obj, value) {
+        return obj[value]
+        }
+    for (zip of zipcodes) {
+        //console.log(zip)
+        path = document.getElementById(zip)
+        path.style.color = getValueByKey(data, zip)
     }
+
     
 
     
     //use jinja to impplement + javascript
 </script>
 
-<div id="macro_graph">
-    {% include 'NYCZipCodeMapSVG/new-york_combined.svg' %}
-  </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 {% include 'footer.html' %}
