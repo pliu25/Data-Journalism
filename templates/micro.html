@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Micro Page: Comparing Breed Populations in {{zipcode}}</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,9 +17,171 @@
 <br>
 <h1>Dog Populations Per Breed in {{zipcode}}</h1>
 
-<div id="micro_graph">
-    {% include 'bar_graph.svg' %}
-  </div>
+<div id="bar_chart"></div>
+
+<!-- Create a container for the chart -->
+<svg width="1000" height="1000"></svg>
+<script>
+  /*const margin = { top: 70, right: 40, bottom: 60, left: 175 }
+  const width = 660 - margin.left - margin.right
+  const height = 400 - margin.top - margin.bottom
+  // Define the data source
+  var data = Object.entries({{breeds_dict | tojson }});
+  console.log(data);
+
+  var mapped = data.map(d => {
+  return {
+    breed: Object.keys(d)[0],
+    pop: d[Object.keys(d)[1]]
+  }
+  }); 
+  console.log(mapped);
+ 
+  var x = d3.scaleBand().rangeRound([0, width], .05);
+  var y = d3.scaleLinear().range([height, 0]);
+
+  x.domain(mapped.map(d => d.date));
+  y.domain([0, d3.max(mapped, d => d.count)]);
+    
+  var svg = d3.select("#bar_chart").append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+  svg.selectAll("bar")
+      .data(mapped)
+      .enter().append("rect")
+        .style("fill", "steelblue")
+        .attr("x", d => x(d.breed))
+        .attr("width", x.bandwidth())
+        .attr("y", d => y(d.pop))
+        .attr("height", d => height - y(d.count));
+  svg.selectAll(".label")
+      .data(mapped)
+      .enter().append("text")
+      .attr("x", function (d) {return x(d.breed) + 5;}) */
+  
+  // Set up the dimensions of the chart
+const margin = { top: 70, right: 40, bottom: 60, left: 175 }
+const width = 660 - margin.left - margin.right
+const height = 400 - margin.top - margin.bottom
+
+// Create the SVG container for the chart
+const svg = d3.select("#bar_chart").append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  var data = Object.entries({{breeds_dict | tojson }});
+  const sortedDict = Object.fromEntries(
+      data.sort(([,a],[,b]) => b- a)
+  );
+  console.log(sortedDict)
+
+  
+
+  // Set the x and y scales
+  const x = d3.scaleLinear()
+    .range([0, width])
+    .domain([0, d3.max(data, function (d) { return d.a; })]);
+
+  const y = d3.scaleBand()
+    .range([height, 0])
+    .padding(0.1)
+    .domain(data.map(function (d) { return d.breed; }));
+
+  // Create the x and y axes
+  const xAxis = d3.axisBottom(x)
+    .ticks(5)
+    .tickSize(0); // remove ticks
+
+
+  const yAxis = d3.axisLeft(y)
+    .tickSize(0)
+    .tickPadding(10);
+
+
+
+  // Add vertical gridlines
+  svg.selectAll("line.vertical-grid")
+    .data(x.ticks(5))
+    .enter()
+    .append("line")
+    .attr("class", "vertical-grid")
+    .attr("x1", function (d) { return x(d); })
+    .attr("y1", 0)
+    .attr("x2", function (d) { return x(d); })
+    .attr("y2", height)
+    .style("stroke", "gray")
+    .style("stroke-width", 0.5)
+    .style("stroke-dasharray", "3 3");
+
+  // Create the bars for the chart
+  svg.selectAll(".bar")
+    .data(data)
+    .enter().append("rect")
+    .attr("class", "bar")
+    .attr("y", function (d) { return y(d.breed); })
+    .attr("height", y.bandwidth())
+    .attr("x", 0)
+    .attr("width", function (d) { return x(d.total); })
+    .attr('fill', '#96a5b9')
+
+  // Add the x and y axes to the chart
+  svg.append("g")
+    .attr("class", "x axis")
+    .style("font-size", "10px")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis)
+    .call(g => g.select(".domain").remove());
+
+  svg.append("g")
+    .attr("class", "y axis")
+    .style("font-size", "8px")
+    .call(yAxis)
+    .selectAll('path')
+    .style('stroke-width', '1.75px');
+
+  svg.selectAll(".y.axis .tick text")
+    .text(function (d) {
+      return d.toUpperCase();
+    });
+
+
+  // Add labels to the end of each bar
+  svg.selectAll(".label")
+    .data(data)
+    .enter().append("text")
+    .attr("x", function (d) { return x(d.total) + 5; })
+    .attr("y", function (d) { return y(d.breed) + y.bandwidth() / 2; })
+    .attr("dy", ".35em")
+    .style("font-family", "sans-serif")
+    .style("font-size", "10px")
+    .style("font-weight", "bold")
+    .style('fill', '#3c3d28')
+    .text(function (d) { return d.total; });
+
+  // Add Total label
+  svg.append("text")
+    .attr("transform", "translate(" + width / 2 + "," + (height + margin.bottom / 2) + ")")
+    .style("text-anchor", "middle")
+    .style("font-size", "10px")
+    .style("fill", "black")
+    .style("font-family", "sans-serif")
+    .attr("dy", "1em")
+    .text("Total");
+
+  // Add the chart title
+  svg.append("text")
+    .attr("x", margin.left - 335)
+    .attr("y", margin.top - 110)
+    .style("font-size", "14px")
+    .style("font-weight", "bold")
+    .style("font-family", "sans-serif")
+    .text("Bog Mummies Are the Most Frequently Observed Preservation State");
+
+   </script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 {% include 'footer.html' %}

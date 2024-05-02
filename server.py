@@ -54,8 +54,8 @@ def micro():
     all_zips = sorted(list(data["macro"].keys()))
     requested_zip = request.args.get("zipcode")
     zipcode = request.query_string.decode()
+    breeds_dict = data["micro"][zipcode]
 
-
-    return render_template('micro.html', requested_zip = requested_zip, all_zips = all_zips, zipcode = zipcode)
+    return render_template('micro.html', requested_zip = requested_zip, all_zips = all_zips, zipcode = zipcode, breeds_dict = breeds_dict)
 
 app.run(debug=True) 
