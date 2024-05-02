@@ -30,9 +30,13 @@
         return obj[value]
         }
     for (zip of zipcodes) {
-        //console.log(zip)
-        path = document.getElementById(zip)
-        path.style.color = getValueByKey(data, zip)
+        if (document.getElementById(zip) !== null) {
+            path = document.getElementById(zip);
+            //console.log(path);
+        }
+        //console.log("'" + getValueByKey(data, zip) + "'");
+        path.setAttribute('style', "fill: rgb(" + getValueByKey(data, zip) + ");");
+        console.log(path)
     }
 
     
