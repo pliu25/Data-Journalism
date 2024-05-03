@@ -76,14 +76,20 @@ const svg = d3.select("#bar_chart").append("svg")
   const sortedDict = Object.fromEntries(
       data.sort(([,a],[,b]) => b- a)
   );
-  console.log(sortedDict)
-
-  
+  var sorted_data = Object.entries(sortedDict)
+  console.log(sorted_data)
+  var mapped = sorted_data.map(d => {
+  return {
+    breed: d[Object.keys(d)[0]],
+    pop: d[Object.keys(d)[1]]
+  }
+  }); 
+  console.log(mapped)
 
   // Set the x and y scales
   const x = d3.scaleLinear()
     .range([0, width])
-    .domain([0, d3.max(data, function (d) { return d.a; })]);
+    .domain([0, d3.max(data, function (d) { return d.pop; })]);
 
   const y = d3.scaleBand()
     .range([height, 0])
@@ -124,7 +130,7 @@ const svg = d3.select("#bar_chart").append("svg")
     .attr("y", function (d) { return y(d.breed); })
     .attr("height", y.bandwidth())
     .attr("x", 0)
-    .attr("width", function (d) { return x(d.total); })
+    .attr("width", function (d) { return x(d.pop); })
     .attr('fill', '#96a5b9')
 
   // Add the x and y axes to the chart
@@ -142,24 +148,24 @@ const svg = d3.select("#bar_chart").append("svg")
     .selectAll('path')
     .style('stroke-width', '1.75px');
 
-  svg.selectAll(".y.axis .tick text")
-    .text(function (d) {
-      return d.toUpperCase();
-    });
+  //svg.selectAll(".y.axis .tick text")
+    //.text(function (d) {
+      //return d.toUpperCase();
+    //});
 
 
   // Add labels to the end of each bar
   svg.selectAll(".label")
     .data(data)
     .enter().append("text")
-    .attr("x", function (d) { return x(d.total) + 5; })
+    .attr("x", function (d) { return x(d.pop) + 5; })
     .attr("y", function (d) { return y(d.breed) + y.bandwidth() / 2; })
     .attr("dy", ".35em")
     .style("font-family", "sans-serif")
     .style("font-size", "10px")
     .style("font-weight", "bold")
     .style('fill', '#3c3d28')
-    .text(function (d) { return d.total; });
+    .text(function (d) { return d.pop; });
 
   // Add Total label
   svg.append("text")
