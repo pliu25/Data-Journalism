@@ -72,7 +72,7 @@ const svg = d3.select("#bar_chart").append("svg")
   .append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  var data = Object.entries({{breeds_dict | tojson }});
+  var data = Object.entries({{sorted_breeds_dict | tojson }});
   const sortedDict = Object.fromEntries(
       data.sort(([,a],[,b]) => b- a)
   );
@@ -81,11 +81,13 @@ const svg = d3.select("#bar_chart").append("svg")
   var mapped = sorted_data.map(d => {
   return {
     breed: d[Object.keys(d)[0]],
-    pop: d[Object.keys(d)[1]]
+    pop: d[Object.keys(d)[1]] 
   }
   }); 
   console.log(mapped)
 
+  //average macro data: maybe different chart comparing total number of breeds in zipcode vs 
+  //average number of breeds in each zipcode 
   // Set the x and y scales
   const x = d3.scaleLinear()
     .range([0, width])
