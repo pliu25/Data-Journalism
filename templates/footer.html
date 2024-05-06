@@ -44,28 +44,9 @@
 
       </style>
       <div class="w3-bar w3-light-grey" >
-        <a href="/" class="w3-bar-item w3-button">About</a>
-        <a href="/macro" class="w3-bar-item w3-button">Dog Populations in NYC: Zipcode Map</a>
-        <div class="dropup">
-          <button class="dropbtn">
-            Dropdown Menu: Comparing Dog Breed Populations in... 
-          </button>
-          <div class="dropup-content" >
-            {% for zip in all_zips %}
-            <a href="/micro?{{zip}}"> {{zip}}</a>
-            {% endfor %}
-          </div>
-        </div>
-      
-      <script>
-        function myFunction() {
-          var x = document.getElementById("demo");
-          if (x.className.indexOf("w3-show") == -1) {
-            x.className += " w3-show";
-          } else { 
-            x.className = x.className.replace(" w3-show", "");
-          }
-        }
+        <a href="https://data.cityofnewyork.us/Health/NYC-Dog-Licensing-Dataset/nu7n-tubp/about_data" class="w3-bar-item w3-button">NYC Dog Licensing Data Source (NYC Open Data) </a>
+        <a href="https://simplemaps.com/city/new-york/zips" class="w3-bar-item w3-button">NYC SVG Map by Zipcode Source (Simple Maps)</a>
+        
       </script>      
     </footer>
     <!-- Footer -->
