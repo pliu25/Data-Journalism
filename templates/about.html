@@ -13,6 +13,7 @@
     
 <body>
   {% include 'navbar.html' %}
+  <br>
   <div class="mx-auto" style="width: 98%;">
     <h1>Tracking Dogs in New York City</h1>
     <p>In this investigation, I'll be exploring the number of dogs in New York City, as well as the number of various different breeds. 
@@ -30,13 +31,16 @@
         <li><a href="NYCZipCodeMapSVG/new-york_combined.svg"> NYC SVG Map by Zipcode Graphic </a></li>
       </ul>
     <h2 id="DataCleansingPipeline"> Data Cleansing Pipeline</h2>
-    <p> The original dataset had a dog's name, sex, birth year, breed, license issue date, license expired date, and data extraction year. I pared down the dataset so it was easier to analyze what I wanted to&mdash;the number of dogs in each zipcode and the number of dogs per breed in each zipcode. 
-        By removing columns in Excel, I pared down the dataset so it initially only had the dog's name, breed, and data extraction year. I thought the data extraction year was a good representation of the amount of dogs in NYC in a certain year because that means the dog license was active in that certain year 
-        and it was also easier to use than the specific license issued and expired date. Then, since I'm only looking at NYC zipcodes, I removed all non-NYC zipcodes by first googling the range of NYC zipcodes (10001 - 11697) and then removing all data entries with zipcodes 
-        outside of that range, including four-digit zipcodes that might have just been typos. I made this process easier for myself by using an Excel function to sort all data entries by the chronological order of the zipcodes, and then removing entries less than 10001 and more than 
-        11697. After, since I decided to just look at dog licenses during 2023, I removed all data entries not from 2023. This process was similar to my removal of non-NYC zipcodes&mdash;I sorted the dataset by the chronological order of the extract years and then removed all non-2023 years. 
-        Thus, I pared down my data from 600K+ entries to about 108K and so it fit both my macro and micro pages! 
-    </p>
+    <ol> 
+        <li>The original dataset had a dog's name, sex, birth year, breed, license issue date, license expired date, and data extraction year. I pared down the dataset so it was easier to analyze what I wanted to&mdash;the number of dogs in each zipcode and the number of dogs per breed in each zipcode. 
+          By removing columns in Excel, I pared down the dataset so it initially only had the dog's name, breed, and data extraction year. I thought the data extraction year was a good representation of the amount of dogs in NYC in a certain year because that means the dog license was active in that certain year 
+          and it was also easier to use than the specific license issued and expired date. </li>
+        <li>Then, since I'm only looking at NYC zipcodes, I removed all non-NYC zipcodes by first googling the range of NYC zipcodes (10001 - 11697) and then removing all data entries with zipcodes 
+          outside of that range, including four-digit zipcodes that might have just been typos. I made this process easier for myself by using an Excel function to sort all data entries by the chronological order of the zipcodes, and then removing entries less than 10001 and more than 
+          11697.</li>
+        <li>After, since I decided to just look at dog licenses during 2023, I removed all data entries not from 2023. This process was similar to my removal of non-NYC zipcodes&mdash;I sorted the dataset by the chronological order of the extract years and then removed all non-2023 years. </li>
+        <li> Thus, I pared down my data from 600K+ entries to about 108K and so it fit both my macro and micro pages! </li>
+    </ol>
     <ul>
         <li><a href="data/format_data.py"> format_data.py: what I did to organize my modified data into dictionaries I could later work with to craft a more understandable, visual interpretation of my data, my macro and micro pages</a></li>
         <li><a href="data/data.json"> data.json: modified data organized into dictionaries by format_data.py, so it's easier to translate data to my planned maps and bar charts</a></li>
