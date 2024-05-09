@@ -19,19 +19,38 @@
 <h1>Comparing Dog Breed Populations in {{zipcode}}</h1>
 
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <div id="dog_breeds" style="width:100%;max-width:70%"></div>
-    </div>
-    <div class="col">
-      <p></p>
-    </div>
-  </div> 
-  <div class="row">
-    <div class="col">
-      <div id="breeds_num" style="width:100%;max-width:700px"></div>
-    </div>
-  </div> 
+  <table>
+    <tr>
+      <th><div id="dog_breeds" style="width:100%;max-width:70%"></div></th>
+      <th><div class="col">
+        {% if sorted_breeds_list[0][0] == "Unknown" %}
+        <p style="text-align: center; vertical-align: middle;">{{sorted_breeds_list[0][0]}} breeds are the most popular in {{zipcode}}. </p>
+        {% else %}
+        <p style="text-align: center; vertical-align: middle;">The most popular breed of dog in {{zipcode}} are {{sorted_breeds_list[0][0] + "s"}}. </p>
+        {% endif %}
+      </div></th>
+    </tr>
+    <tr>
+      <th><div id="breeds_num" style="width:100%;max-width:70%"></div></th>
+      <th style="text-align: center; vertical-align: middle;"> 
+        {% if (zip_num_breeds - avg_num_breeds) >= 75 %}
+          <p>{{zipcode}}'s number of breeds far surpasses the average number of breeds across zipcodes. </p>
+        {% elif 25 <= (zip_num_breeds - avg_num_breeds) < 75 %}
+          <p>{{zipcode}}'s number of breeds surpasses the average number of breeds across zipcodes by a fair amount. </p>
+        {% elif 10 <= (zip_num_breeds - avg_num_breeds) < 25 %}
+          <p>{{zipcode}}'s number of breeds surpasses the average number of breeds across zipcodes slightly. </p>
+        {% elif -10 <= (zip_num_breeds - avg_num_breeds) < 10 %}
+          <p>The number of breeds in {{zipcode}} and the average number of breeds across zipcodes are similar. </p>
+        {% elif -25 <= (zip_num_breeds - avg_num_breeds) < -10 %}
+          <p>The average number of breeds across zipcodes surpasses the number of breeds in {{zipcode}} slightly. </p>
+        {% elif -40 <= (zip_num_breeds - avg_num_breeds) < -25 %}
+          <p>The average number of breeds across zipcodes surpasses the number of breeds in {{zipcode}} by a fair amount. </p>
+        {% elif -70 < (zip_num_breeds - avg_num_breeds) < -40 %}
+          <p>The average number of breeds across zipcodes far surpasses the number of breeds in {{zipcode}}. </p>
+        {% endif %}
+      </th>
+    </tr>
+  </table> 
 </div>
 
 
@@ -52,7 +71,7 @@ const final_data = [{
   y:breeds,
   type:"bar",
   orientation:"h",
-  marker: {color:"rgba(255,0,0,0.6)"}
+  marker: {color:"rgba(129, 4, 196, 0.6)"}
 }];
 
 const layout = {title:`Top Ten Most Popular Dog Breeds in {{zipcode}}`, 
@@ -64,7 +83,7 @@ const layout = {title:`Top Ten Most Popular Dog Breeds in {{zipcode}}`,
     t: 100,
     pad: 4
   }};
-  var subtitle = "Dog Breed Populations Sorted From Most Popular to Least Popular"
+  var subtitle = "(Dog Breed Populations Sorted From Most Popular to Least Popular)"
   layout['title'] += "<br>" + subtitle;
 
 Plotly.newPlot("dog_breeds", final_data, layout);
@@ -81,10 +100,10 @@ const final_data2 = [{
   y:labels,
   type:"bar",
   orientation:"h",
-  marker: {color:"rgba(255,0,0,0.6)"}
+  marker: {color:"rgba(129, 4, 196, 0.6)"}
 }];
 
-const layout2 = {title:"Average Number of Different Breeds of Zipcodes" + "<br>" + "v.s. Number of Different Breeds in {{zipcode}}", autosize: false,
+const layout2 = {title:<b>"Average Number of Different Breeds of Zipcodes" + "<br>" + "v.s. Number of Different Breeds in {{zipcode}}"</b>, autosize: false,
   margin: {
     l: 300,
     r: 50,

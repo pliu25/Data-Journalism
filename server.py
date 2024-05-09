@@ -73,6 +73,6 @@ def micro():
         zipcode + "'s Number of Breeds": zip_num_breeds
     }
     print(final_dict)
-    return render_template('micro.html', requested_zip = requested_zip, all_zips = all_zips, zipcode = zipcode, breeds_dict = breeds_dict, sorted_breeds_dict = sorted_breeds_dict,final_dict = final_dict)
+    return render_template('micro.html', requested_zip = requested_zip, all_zips = all_zips, zipcode = zipcode, breeds_dict = breeds_dict, sorted_breeds_list = sorted_breeds_list, sorted_breeds_dict = sorted_breeds_dict,final_dict = final_dict, avg_num_breeds = avg_num_breeds, zip_num_breeds = zip_num_breeds)
 
 app.run(debug=True) 
