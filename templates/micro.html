@@ -74,7 +74,7 @@ const final_data = [{
   marker: {color:"rgba(129, 4, 196, 0.6)"}
 }];
 
-const layout = {title:`Top Ten Most Popular Dog Breeds in {{zipcode}}`, 
+const layout = {title: "<b>" + `Top Ten Most Popular Dog Breeds in {{zipcode}}` + "</b>", 
   autosize: false,
   margin: {
     l: 300,
@@ -83,7 +83,7 @@ const layout = {title:`Top Ten Most Popular Dog Breeds in {{zipcode}}`,
     t: 100,
     pad: 4
   }};
-  var subtitle = "(Dog Breed Populations Sorted From Most Popular to Least Popular)"
+  var subtitle = "<b>" + "(Dog Breed Populations Sorted From Most Popular to Least Popular)" + "</b>"
   layout['title'] += "<br>" + subtitle;
 
 Plotly.newPlot("dog_breeds", final_data, layout);
@@ -103,7 +103,7 @@ const final_data2 = [{
   marker: {color:"rgba(129, 4, 196, 0.6)"}
 }];
 
-const layout2 = {title:<b>"Average Number of Different Breeds of Zipcodes" + "<br>" + "v.s. Number of Different Breeds in {{zipcode}}"</b>, autosize: false,
+const layout2 = {title:"<b>" + "Average Number of Different Breeds of Zipcodes" + "<br>" + "v.s. Number of Different Breeds in {{zipcode}}" + "</b>", autosize: false,
   margin: {
     l: 300,
     r: 50,
@@ -113,244 +113,6 @@ const layout2 = {title:<b>"Average Number of Different Breeds of Zipcodes" + "<b
   }};
 
 Plotly.newPlot("breeds_num", final_data2, layout2);
-
-
-  /*const margin = { top: 70, right: 40, bottom: 60, left: 175 }
-  const width = 660 - margin.left - margin.right
-  const height = 400 - margin.top - margin.bottom
-  // Define the data source
-  var data = Object.entries({{breeds_dict | tojson }});
-  console.log(data);
-
-  var mapped = data.map(d => {
-  return {
-    breed: Object.keys(d)[0],
-    pop: d[Object.keys(d)[1]]
-  }
-  }); 
-  console.log(mapped);
- 
-  var x = d3.scaleBand().rangeRound([0, width], .05);
-  var y = d3.scaleLinear().range([height, 0]);
-
-  x.domain(mapped.map(d => d.date));
-  y.domain([0, d3.max(mapped, d => d.count)]);
-    
-  var svg = d3.select("#bar_chart").append("svg")
-      .attr("width", width)
-      .attr("height", height);
-
-  svg.selectAll("bar")
-      .data(mapped)
-      .enter().append("rect")
-        .style("fill", "steelblue")
-        .attr("x", d => x(d.breed))
-        .attr("width", x.bandwidth())
-        .attr("y", d => y(d.pop))
-        .attr("height", d => height - y(d.count));
-  svg.selectAll(".label")
-      .data(mapped)
-      .enter().append("text")
-      .attr("x", function (d) {return x(d.breed) + 5;}) */
-  
-  // Set up the dimensions of the chart
-// const margin = { top: 70, right: 40, bottom: 60, left: 175 }
-// const width = 660 - margin.left - margin.right
-// const height = 400 - margin.top - margin.bottom
-
-// Create the SVG container for the chart
-// const svg = d3.select("#bar_chart").append("svg")
-//   .attr("width", width + margin.left + margin.right)
-//   .attr("height", height + margin.top + margin.bottom)
-//   .append("g")
-//   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-  /*var data = Object.entries({{sorted_breeds_dict | tojson }});
-  const sortedDict = Object.fromEntries(
-      data.sort(([,a],[,b]) => b- a)
-  );
-  var sorted_data = Object.entries(sortedDict)
-  console.log(sorted_data)
-  var mapped = sorted_data.map(d => {
-  return {
-    breed: d[Object.keys(d)[0]],
-    pop: d[Object.keys(d)[1]] 
-  }
-  }); 
-  console.log(mapped)
-
-    //set up svg using margin conventions - we'll need plenty of room on the left for labels
-  var margin = {
-      top: 15,
-      right: 25,
-      bottom: 15,
-      left: 60
-  };
-
-  var width = 960 - margin.left - margin.right,
-      height = 500 - margin.top - margin.bottom;
-
-  var svg = d3.select("#graphic").append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-  var x = d3.scale.linear()
-      .range([0, width])
-      .domain([0, d3.max(sorted_data, function (d) {
-          return d.pop;
-      })]);
-
-  var y = d3.scale.ordinal()
-      .rangeRoundBands([height, 0], .1)
-      .domain(data.map(function (d) {
-          return d.breed;
-      }));
-
-  //make y axis to show bar names
-  var yAxis = d3.svg.axis()
-      .scale(y)
-      //no tick marks
-      .tickSize(0)
-      .orient("left");
-
-  var gy = svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-
-  var bars = svg.selectAll(".bar")
-      .data(data)
-      .enter()
-      .append("g")
-
-  //append rects
-  bars.append("rect")
-      .attr("class", "bar")
-      .attr("y", function (d) {
-          return y(d.breed);
-      })
-      .attr("height", y.rangeBand())
-      .attr("x", 0)
-      .attr("width", function (d) {
-          return x(d.pop);
-      });
-
-  //add a value label to the right of each bar
-  bars.append("text")
-      .attr("class", "label")
-      //y position of the label is halfway down the bar
-      .attr("y", function (d) {
-          return y(d.breed) + y.rangeBand() / 2 + 4;
-      })
-      //x position is 3 pixels to the right of the bar
-      .attr("x", function (d) {
-          return x(d.pop) + 3;
-      })
-      .text(function (d) {
-          return d.pop;
-      });
-  //average macro data: maybe different chart comparing total number of breeds in zipcode vs 
-  //average number of breeds in each zipcode 
-  // Set the x and y scales
-  /*const x = d3.scaleLinear()
-    .range([0, width])
-    .domain([0, d3.max(data, function (d) { return d.pop; })]);
-
-  const y = d3.scaleBand()
-    .range([height, 0])
-    .padding(0.1)
-    .domain(data.map(function (d) { return d.breed; }));
-
-  // Create the x and y axes
-  const xAxis = d3.axisBottom(x)
-    .ticks(5)
-    .tickSize(0); // remove ticks
-
-
-  const yAxis = d3.axisLeft(y)
-    .tickSize(0)
-    .tickPadding(10);
-
-
-
-  // Add vertical gridlines
-  svg.selectAll("line.vertical-grid")
-    .data(x.ticks(5))
-    .enter()
-    .append("line")
-    .attr("class", "vertical-grid")
-    .attr("x1", function (d) { return x(d); })
-    .attr("y1", 0)
-    .attr("x2", function (d) { return x(d); })
-    .attr("y2", height)
-    .style("stroke", "gray")
-    .style("stroke-width", 0.5)
-    .style("stroke-dasharray", "3 3");
-
-  // Create the bars for the chart
-  svg.selectAll(".bar")
-    .data(data)
-    .enter().append("rect")
-    .attr("class", "bar")
-    .attr("y", function (d) { return y(d.breed); })
-    .attr("height", y.bandwidth())
-    .attr("x", 0)
-    .attr("width", function (d) { return x(d.pop); })
-    .attr('fill', '#96a5b9')
-
-  // Add the x and y axes to the chart
-  svg.append("g")
-    .attr("class", "x axis")
-    .style("font-size", "10px")
-    .attr("transform", "translate(0," + height + ")")
-    .call(xAxis)
-    .call(g => g.select(".domain").remove());
-
-  svg.append("g")
-    .attr("class", "y axis")
-    .style("font-size", "8px")
-    .call(yAxis)
-    .selectAll('path')
-    .style('stroke-width', '1.75px');
-
-  //svg.selectAll(".y.axis .tick text")
-    //.text(function (d) {
-      //return d.toUpperCase();
-    //});
-
-
-  // Add labels to the end of each bar
-  svg.selectAll(".label")
-    .data(data)
-    .enter().append("text")
-    .attr("x", function (d) { return x(d.pop) + 5; })
-    .attr("y", function (d) { return y(d.breed) + y.bandwidth() / 2; })
-    .attr("dy", ".35em")
-    .style("font-family", "sans-serif")
-    .style("font-size", "10px")
-    .style("font-weight", "bold")
-    .style('fill', '#3c3d28')
-    .text(function (d) { return d.pop; });
-
-  // Add Total label
-  svg.append("text")
-    .attr("transform", "translate(" + width / 2 + "," + (height + margin.bottom / 2) + ")")
-    .style("text-anchor", "middle")
-    .style("font-size", "10px")
-    .style("fill", "black")
-    .style("font-family", "sans-serif")
-    .attr("dy", "1em")
-    .text("Total");
-
-  // Add the chart title
-  svg.append("text")
-    .attr("x", margin.left - 335)
-    .attr("y", margin.top - 110)
-    .style("font-size", "14px")
-    .style("font-weight", "bold")
-    .style("font-family", "sans-serif")
-    .text("Bog Mummies Are the Most Frequently Observed Preservation State");*/
 
    </script>
 
