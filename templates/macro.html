@@ -21,9 +21,6 @@
     {% include 'NYCZipCodeMapSVG/new-york_combined.svg' %}
   </div>
 
-<div id="macro_legend">
-    {% include 'templates/macro_legend.svg ' %}
-</div>
 <script>
     let data = {{zipcode_color  | tojson}}
     let zipcodes = Object.keys(data)
