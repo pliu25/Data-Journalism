@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" width="1200" height="1200" stroke="transparent" stroke-width="0px">
+    <rect x= "-200" y="500" height="25" width="25" fill="rgb(231, 220, 250)" stroke="none"/>
+    <rect x= "-200" y="535" height="25" width="25" fill="rgb(206, 176, 255)" stroke="none"/>
+    <rect x= "-200" y="570" height="25" width="25" fill="rgb(169, 115, 255)" stroke="none"/>
+    <rect x= "-200" y="605" height="25" width="25" fill="rgb(135, 59, 255)" stroke="none"/>
+
+    <rect x= "-175" y="500" height="25" width="25" fill="rgb(226, 209, 255)" stroke="none"/>
+    <rect x= "-175" y="535" height="25" width="25" fill="rgb(187, 146, 252) " stroke="none"/>
+    <rect x= "-175" y="570" height="25" width="25" fill="rgb(155, 93, 252)" stroke="none"/>
+    <rect x= "-175" y="605" height="25" width="25" fill="rgb(122, 38, 255)" stroke="none"/>
+
+    <rect x= "-150" y="500" height="25" width="25" fill="rgb(213, 189, 252)" stroke="none"/>
+    <rect x= "-150" y="535" height="25" width="25" fill="rgb(178, 130, 255)" stroke="none"/>
+    <rect x= "-150" y="570" height="25" width="25" fill="rgb(143, 73, 252)" stroke="none"/>
+    <rect x= "-150" y="605" height="25" width="25" fill="rgb(105, 10, 255)" stroke="none"/>
+
+    <text class="legend" x="-115" y="517.5" fill="#000000"> Low Life Expectancy </text>
+    <text class="legend" x="-115" y="552.5" fill="#000000"> Lower Life Expectancy</text>
+    <text class="legend" x="-115" y="587.5" fill="#000000"> Higher Life Expectancy </text>
+    <text class="legend" x="-115" y="622.5" fill="#000000"> High Life Expectancy </text>
+</svg> 

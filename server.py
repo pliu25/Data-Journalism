@@ -2,6 +2,7 @@ from flask import Flask
 from flask import request
 from flask import render_template
 import json
+import math
 
 app = Flask(__name__, static_url_path='', static_folder='static')
 
@@ -52,6 +53,7 @@ def micro():
     f.close()
 
     all_zips = sorted(list(data["macro"].keys()))
+    #print(all_zips)
     requested_zip = request.args.get("zipcode")
     zipcode = request.query_string.decode()
     breeds_dict = data["micro"][zipcode]
@@ -59,12 +61,18 @@ def micro():
     sorted_breeds_list = (sorted(breeds_list, key=lambda breed: breed[1], reverse=True))[0:10]
     sorted_breeds_dict = dict(sorted_breeds_list)
     #print(sorted_breeds_dict)
-    print(data["micro"]) #fix this 
+    #print(data["micro"]) #fix this 
     breeds_num = {}
-    for zip in all_zips: 
-        for zip2 in data["micro"]:
-            breeds_num[zip] = len(zip2)
-    print(breeds_num)
-    return render_template('micro.html', requested_zip = requested_zip, all_zips = all_zips, zipcode = zipcode, breeds_dict = breeds_dict, sorted_breeds_dict = sorted_breeds_dict)
+    for zip in data["micro"]:
+        breeds_num[zip] = len(data["micro"][zip])
+    #print(breeds_num)
+    zip_num_breeds = breeds_num[zipcode]
+    avg_num_breeds = math.trunc((sum(breeds_num.values()))/(len(breeds_num)))
+    final_dict = {
+        "Average Number of Breeds Across Zipcodes": avg_num_breeds, 
+        zipcode + "'s Number of Breeds": zip_num_breeds
+    }
+    print(final_dict)
+    return render_template('micro.html', requested_zip = requested_zip, all_zips = all_zips, zipcode = zipcode, breeds_dict = breeds_dict, sorted_breeds_dict = sorted_breeds_dict,final_dict = final_dict)
 
 app.run(debug=True) 

@@ -16,9 +16,24 @@
 <body>
 {% include 'navbar.html' %}
 <br>
-<h1>Dog Populations Per Breed in {{zipcode}}</h1>
+<h1>Comparing Dog Breed Populations in {{zipcode}}</h1>
 
-<div id="bar_chart" style="width:100%;max-width:700px"></div>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div id="dog_breeds" style="width:100%;max-width:70%"></div>
+    </div>
+    <div class="col">
+      <p></p>
+    </div>
+  </div> 
+  <div class="row">
+    <div class="col">
+      <div id="breeds_num" style="width:100%;max-width:700px"></div>
+    </div>
+  </div> 
+</div>
+
 
 <script>
 var data = Object.entries({{sorted_breeds_dict | tojson }});
@@ -29,7 +44,7 @@ var sorted_data = Object.entries(sortedDict)
 const breeds = Object.keys(sortedDict)
 const pops = Object.values(sortedDict);
 console.log(breeds);
-console.log(pops)
+console.log(pops);
 
 
 const final_data = [{
@@ -40,10 +55,45 @@ const final_data = [{
   marker: {color:"rgba(255,0,0,0.6)"}
 }];
 
-const layout = {title:"World Wide Wine Production"};
+const layout = {title:`Top Ten Most Popular Dog Breeds in {{zipcode}}`, 
+  autosize: false,
+  margin: {
+    l: 300,
+    r: 50,
+    b: 100,
+    t: 100,
+    pad: 4
+  }};
+  var subtitle = "Dog Breed Populations Sorted From Most Popular to Least Popular"
+  layout['title'] += "<br>" + subtitle;
 
-Plotly.newPlot("bar_chart", final_data, layout);
+Plotly.newPlot("dog_breeds", final_data, layout);
 
+
+var data2 = Object.entries({{final_dict | tojson }});
+console.log(data2);
+const labels = [data2[0][0], data2[1][0]]
+const num_breeds = [data2[0][1], data2[1][1]]
+console.log("l", labels);
+console.log("n", num_breeds);
+const final_data2 = [{
+  x:num_breeds,
+  y:labels,
+  type:"bar",
+  orientation:"h",
+  marker: {color:"rgba(255,0,0,0.6)"}
+}];
+
+const layout2 = {title:"Average Number of Different Breeds of Zipcodes" + "<br>" + "v.s. Number of Different Breeds in {{zipcode}}", autosize: false,
+  margin: {
+    l: 300,
+    r: 50,
+    b: 100,
+    t: 100,
+    pad: 4
+  }};
+
+Plotly.newPlot("breeds_num", final_data2, layout2);
 
 
   /*const margin = { top: 70, right: 40, bottom: 60, left: 175 }
