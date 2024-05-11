@@ -25,7 +25,8 @@ def macro():
 
     requested_zip = request.args.get("zip")
     all_zips = sorted(list(data["macro"].keys()))
-    
+    all_values =sorted(list(data["macro"].values()))
+    print(all_values)
     zip_pop = data["macro"]
     zipcode_color = {}
 

@@ -38,13 +38,29 @@
         path.setAttribute('style', "fill: rgb(" + getValueByKey(data, zip) + ");");
         console.log(path)
     }
+
+    $(document).ready(function(){
+       var $array = [];
+       $('path[id]').each(function(){
+       var id = $(this).attr('id');
+       $(this).addClass("lnk") // this will make it clickable links
+       $(this).click(function(){// now handle the click event
+          window.location.href = "/micro?"+id+"";
+       });
+       $array.push(id);
+});
+
+});
     
     //use jinja to impplement + javascript
 </script>
 
+<br> 
 <h3>Takeaways</h3>
 <ul>
-    <li></li>
+    <li> Most likely because of its high population (of humans), Manhattan has the highest number of dog licenses among the boroughs.</li>
+    <li> Interestingly, the zipcodes with the highest amount of dog licenses are 10023, 11201, and 10025, with 2025, 2150, and 2380 dog licenses respectively. 10023 and 10025 are on the Upper West Side, while 11201 coincides with Downtown Brooklyn. </li>
+    <li> The zipcodes with the least dog licenses (those with 1 dog or 0 dogs) are NYC's "unique" zipcodes, tiny zipcodes that represent a single building or special area such as the World Trade Center. </li>
 </ul>
 
 

@@ -878,5 +878,14 @@
   <rect x= "100" y="440" height="40" width="100" fill="rgb(184,201,216)" stroke="rgb(240, 212, 255)" stroke-width="2"/> 
   <text class="legend" x="215" y="405" fill="#000000"> 0 Dogs </text>
   <text class="legend" x="215" y="465" fill="#000000"> No Data </text>
+
+  <text class="interpret" x="350" y="865" fill="#000000"> Manhattan is the borough with the highest number of zipcodes in the highest quintile</text>
+  <text class="interpret" x="350" y="882.5" fill="#000000"> of dog licenses (656 - 2380 dogs). Brooklyn follows Manhattan as the borough with</text>
+  <text class="interpret" x="350" y="900" fill="#000000"> the second highest number of dog licenses. Queens has the lowest number of zipcodes</text>
+  <text class="interpret" x="350" y="917.5" fill="#000000"> in the highest quintile of dog licenses. Interestingly, people who live in Queens' zipcodes</text>
+  <text class="interpret" x="350" y="935" fill="#000000"> closer to Long Island and with bigger yards hold the least dog licenses. The number</text>
+  <text class="interpret" x="350" y="952.5" fill="#000000"> of dog licenses in Staten Island and the Bronx are in between Brooklyn and Queens. </text>
+
+  <text x="368.68399999999997" y="241.56" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font: bold 22px Arial; cursor: pointer; opacity: 1; display: none;" stroke-width="0" font-size="22px" font-weight="bold" font-family="Arial" opacity="1" transform="matrix(0.488,0,0,0.488,188.7662,123.6787)" class="sm_label sm_label_262"><tspan dy="7.750002441406252" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">11435</tspan></text>
 </svg>
 
