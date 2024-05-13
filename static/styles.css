@@ -21,5 +21,23 @@ figcaption {
     text-align: center;
 }
 
+.st37 {
+    fill: linen;
+}
+  
+.label-text {
+    font-size: 10px;
+    fill: rebeccapurple;
+    transform: translate(0, 3px); /* adjust vertical position to centre text */
+}
+
+.lnk{
+    cursor: pointer;
+}
+    
+.lnk:hover{
+    fill: red;
+}
+
 
   
