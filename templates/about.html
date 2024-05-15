@@ -20,8 +20,8 @@
       My set of data tracks active dog licenses from 2016 to 2023. All dog owners in NYC are required by law to license their dogs, so I think 
       this data set is relatively good at representing the number of dogs in NYC. I pared down the dataset so it tracks each dog's name, breed, zipcode of residence, and the year the dog's license 
       is active (more on the specifics under Data Cleansing Pipeline). I will specifically be looking at NYC dogs in 2023, as it's the most recent year available and I wanted to pare down my 600K+ entry dataset. Because the dataset tracks the year the dog license was active, I think it's 
-      pretty representative of the number of dogs in NYC in each specific year, or 2023 in this case. My macro page will be a map of NYC split by zipcode, with the number of dogs in each 
-      zipcode detailed. My micro pages will be bar charts per zipcode tracking the number of dogs per dog breed. I chose this topic because I thought it was the most interesting one and 
+      pretty representative of the number of dogs in NYC in each specific year, or 2023 in this case. I will have two pages analyzing different facets of my data: one page with a map of NYC split by zipcode, with the number of dogs in each 
+      zipcode detailed, and another page with bar charts per zipcode tracking the number of dogs per dog breed. I chose this topic because I thought it was the most interesting one and 
       I love dogs! I also thought it would be fun to design my page with photos of adorable dogs! 
     </p>
     <h3>Links to All Data Sources</h3>
@@ -39,10 +39,10 @@
           outside of that range, including four-digit zipcodes that might have just been typos. I made this process easier for myself by using an Excel function to sort all data entries by the chronological order of the zipcodes, and then removing entries less than 10001 and more than 
           11697.</li>
         <li>After, since I decided to just look at dog licenses during 2023, I removed all data entries not from 2023. This process was similar to my removal of non-NYC zipcodes&mdash;I sorted the dataset by the chronological order of the extract years and then removed all non-2023 years. </li>
-        <li> Thus, I pared down my data from 600K+ entries to about 108K and so it fit both my macro and micro pages! </li>
+        <li> Thus, I pared down my data from 600K+ entries to about 108K and so it fit both of my planned pages! (detailed in the first paragraph of this About page) </li>
     </ol>
     <ul>
-        <li><a href="data/format_data.py"> format_data.py: what I did to organize my modified data into dictionaries I could later work with to craft a more understandable, visual interpretation of my data, my macro and micro pages</a></li>
+        <li><a href="data/format_data.py"> format_data.py: what I did to organize my modified data into dictionaries I could later work with to craft a more understandable, visual interpretation of my data</a></li>
         <li><a href="data/data.json"> data.json: modified data organized into dictionaries by format_data.py, so it's easier to translate data to my planned maps and bar charts</a></li>
     </ul>
     <h2>Important Vocabulary and Prefaces</h2>
@@ -51,7 +51,7 @@
         Because each dog in NYC is assigned a dog license, I thought it was a good representation of dog populations in NYC. In my graphs, I assume the number of dog licenses to be the number of dogs. 
       <li>Quintiles means splitting data so that each quintile represnents 20% of the total data. 
         The first quintile represents the lowest fifth of the data (1% to 20%), while the fifth quintile represents the highest fifth of the data (81% - 100%). 
-        Because the number of dogs in each zipcode varies so greatly because of the vast difference in the size between certain zipcodes, I decided to use quintiles to best represent my macro data. 
+        Because the number of dogs in each zipcode varies so greatly because of the vast difference in the size between certain zipcodes, I decided to use quintiles to best compare dog populations. 
         I didn't want to arbitraily set random dog population ranges to different colors on my legend, I wanted to assign data points to different colors detailing differences in dog population in a logical way that viewers could understand. 
         </li>
     </ul>
