@@ -61,8 +61,6 @@ def micro():
     breeds_list = (list(breeds_dict.items()))
     sorted_breeds_list = (sorted(breeds_list, key=lambda breed: breed[1], reverse=True))[0:10]
     sorted_breeds_dict = dict(sorted_breeds_list)
-    #print(sorted_breeds_dict)
-    #print(data["micro"]) #fix this 
     breeds_num = {}
     for zip in data["micro"]:
         breeds_num[zip] = len(data["micro"][zip])
@@ -73,7 +71,8 @@ def micro():
         "Average Number of Breeds Across Zipcodes": avg_num_breeds, 
         zipcode + "'s Number of Breeds": zip_num_breeds
     }
-    print(final_dict)
+    print(sorted(data["breeds_count"].values(), reverse = True))
+    #print(final_dict)
     return render_template('micro.html', requested_zip = requested_zip, all_zips = all_zips, zipcode = zipcode, breeds_dict = breeds_dict, sorted_breeds_list = sorted_breeds_list, sorted_breeds_dict = sorted_breeds_dict,final_dict = final_dict, avg_num_breeds = avg_num_breeds, zip_num_breeds = zip_num_breeds)
 
 app.run(debug=True) 

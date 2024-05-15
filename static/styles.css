@@ -1,12 +1,7 @@
 body {
     font-family: "Mate", serif;
-    font-optical-sizing: auto;
+    font-weight: 400;
     font-style: normal;
-  }
-
-h1 {
-    font-weight: bold; 
-    font-size: 40px;
 }
 
 h2 {
@@ -17,9 +12,7 @@ h3 {
     font-size: 30px; 
 }
 
-figcaption {
-    text-align: center;
-}
+
 
 .st37 {
     fill: linen;
@@ -37,6 +30,10 @@ figcaption {
     
 .lnk:hover{
     fill: red;
+}
+
+.w3-bar a:hover {
+    background-color: rgb(223, 169, 252);
 }
 
 

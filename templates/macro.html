@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Macro Page: Number of Dogs Per New York City Zipcode</title>
+    <title>Number of Dogs Per New York City Zipcode</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -10,12 +10,19 @@
     <link rel="icon" type="image/x-icon" href="/photos/dog_icon.png">
     {% include 'integrateBootstrap.html' %}
 </head>
-    
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@800&display=swap');
+    body {
+        font-family: "Mate", serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+</style> 
 <body>
 {% include 'navbar.html' %}
 <br> 
-<h1>Number of Dogs Per New York City Zipcode</h1>
-<h2>By Looking at Dog Licenses</h2>
+<h1 style="font-family: 'Mate', serif; font-weight: 800">Number of Dogs Per New York City Zipcode</h1>
+<h2 style="font-family: 'Mate', serif; font-weight: 800">By Looking at Dog Licenses</h2>
 
 
 <div id="macro_graph">
@@ -76,15 +83,12 @@
     
 </script>
 <br>
-<h3>NYC Boroughs Reference</h3>
-<img src="{{url_for('static', filename='/photos/NYCborough_map.jpeg')}}" class="img-fluid" style="max-width: 100%; height: auto;" alt="Dog in a Field">
-<br>
 <br> 
-<h3>Takeaways</h3>
-<ul>
-    <li> Most likely because of its high population (of humans), Manhattan has the highest number of dog licenses among the boroughs.</li>
-    <li> Interestingly, the zipcodes with the highest amount of dog licenses are 10023, 11201, and 10025, with 2025, 2150, and 2380 dog licenses respectively. 10023 and 10025 are on the Upper West Side, while 11201 coincides with Downtown Brooklyn. </li>
-    <li> The zipcodes with the least dog licenses (those with 1 dog or 0 dogs) are NYC's "unique" zipcodes, tiny zipcodes that represent a single building or special area such as the World Trade Center. </li>
+<h3 style="font-family: 'Mate', serif; font-weight: 800">Takeaways</h3>
+<ul style="font-family: 'Mate', serif;">
+    <li> Manhattan is the most dog-dense borough, meaning that the number of dogs when compared to the human population is high. Manhattan holds the top 23 dog-dense zipcodes. The top three dog-dense zipcodes are 10006, 10069, and 10018, all in Manhattan. In 10006, a small zipcode around the World Trade Center, the human population is 3011 while the dog population is 123. This means that in 10006, there's one dog for every three humans! </li>
+    <li> Interestingly, the zipcodes with the highest number of dog licenses are 10023, 11201, and 10025, with 2025, 2150, and 2380 dog licenses respectively. 10023 and 10025 are on the Upper West Side, while 11201 coincides with Downtown Brooklyn. These zipcodes aren't as dog-dense as the top three dog-dense zipcodes when comparing dogs per capita; however, these zipcodes still have relatively high dog densities, especially when compared to other zipcodes in Brooklyn, Queens, and the Bronx. </li>
+    <li> Other than unknown breeds, the most popular dog breeds in NYC are Yorkshire Terriers, Shih Tzus, and Poodles. Their populations are 5126, 4795, and 4653 dogs respectively. </li>
 </ul>
 
 
