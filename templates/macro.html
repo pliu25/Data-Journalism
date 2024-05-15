@@ -27,6 +27,10 @@
     let zipcodes = Object.keys(data)
     let colors = Object.values(data)
 
+    var mouseOverFunction = function () {
+           this.setStyle("fill: #ebc034"); // your colour change
+    };
+    
     function getValueByKey(obj, value) {
         return obj[value]
         }
@@ -37,69 +41,39 @@
         }
         //console.log("'" + getValueByKey(data, zip) + "'");
         path.setAttribute('style', "fill: rgb(" + getValueByKey(data, zip) + ");");
-        console.log(path)
-    }
+        path.onmouseover = mouseOverFunction;
 
-    $(document).ready(function(){
-       var $array = [];
-       $('path[id]').each(function(){
-       var id = $(this).attr('id');
-       $(this).addClass("lnk") // this will make it clickable links
-       $(this).click(function(){// now handle the click event
-          window.location.href = "/micro?"+id+"";
-       });
-       $array.push(id);
-});
-
-});
-
-
-    function addLabelText(bgPath, labelText)
-    {
-    let bbox = bgPath.getBBox();
-    let x = bbox.x + bbox.width / 2;
-    let y = bbox.y + bbox.height / 2;
-    }
-    // Create a <text> element
-    let textElem = document.createElementNS(bgPath.namespaceURI, "text");
-    textElem.setAttribute("x", x);
-    textElem.setAttribute("y", y);
-    // Centre text horizontally at x,y
-    textElem.setAttribute("text-anchor", "middle");
-    // Give it a class that will determine the text size, colour, etc
-    textElem.classList.add("label-text");
-    // Set the text
-    textElem.textContent = labelText;
-    // Add this text element directly after the label background path
-    bgPath.after(textElem);
-
-    for (zip of zipcodes) {
-    let label1 = document.getElementById(zip);
-    addLabelText(label1, zip);
     }
 
 
 
-/*document.addEventListener("DOMContentLoaded", function(event) {
-  var circlex = 0;
-  var circley = 0;
+    window.onload =()=>{
 
-  var svgCircle = document.getElementById("combined");
-  var NS = "http://www.w3.org/2000/svg";
-  for (var i = 0; i < 100; i++) {
-    var circle = document.createElementNS(NS, "circle");
-    console.log(circle);
-    circle.setAttribute("cx", circlex + i);
-    circle.setAttribute("cy", circley + i);
-    circle.setAttribute("r", 10);
-    circle.setAttribute("fill", "rgb(" + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")");
-    svgCircle.appendChild(circle);
-  };
-});*/
+    const NamSpace= 'http://www.w3.org/2000/svg';
+    let $array = [];
+
+    document.querySelectorAll('#svg3425 path').forEach(el=>{
+    if (document.getElementById(el.id) in zipcodes) {
+    $array.push(el.id)
+    const wrapper = document.createElementNS(NamSpace,'a');
+
+
+    wrapper.setAttribute( 'href', `/micro?${el.id}`);
+
+
+    el.parentNode.insertBefore(wrapper, el);
+    el.parentNode.removeChild(el);
+    wrapper.appendChild(el);
+    
+    
+    }
+    })
+
+    console.log($array);
+    }
 
 
     
-    //use jinja to impplement + javascript
 </script>
 <br>
 <h3>NYC Boroughs Reference</h3>
